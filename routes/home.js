@@ -16,13 +16,29 @@ MongoClient.connect("mongodb://localhost:27017/authorData", function(err, db) {
   if(err) { return console.dir(err); }
 
   var collection = db.collection('User');
- 
-	collection.find().toArray(function(err, items) {
+  var queryQ = req.body.searchQ;
+	collection.find({ author: queryQ }).toArray(function(err, items) {
 
-		res.render('showAuthor' , {
+		
+		items.forEach(function(items){
+
+			collection.find({book: items.book}).toArray(function(err, itemsChild){
+
+
+			console.log("Inner Loop:" + itemsChild.author);
+
+			res.render('showAuthor' , {
 			title: 'The authors along with their co-authors you queried for',
-			items: items});
+			itemsChild: itemsChild});
 		});
+
+		});
+
+		
+		});
+		
+
+		
 		
 	});
 
