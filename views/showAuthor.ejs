@@ -1,0 +1,15 @@
+<h1><%= title %></h1>
+
+<div id="list">
+  <form action="/create" method="post" accept-charset="utf-8">
+    <div class="item-new">
+      <input class="input" type="text" name="content" />
+    </div>
+  </form>
+
+<% items.forEach( function ( items ){ %>
+  <div class="item">
+    <h1><%= items.firstname %></h1>
+  </div>
+<% }); %>
+</div>
