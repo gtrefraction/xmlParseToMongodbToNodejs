@@ -1,15 +1,27 @@
 <h1><%= title %></h1>
+<h1>You queried for: <%=queried%></h1>
 
 <div id="list">
-  <form action="/create" method="post" accept-charset="utf-8">
-    <div class="item-new">
-      <input class="input" type="text" name="content" />
-    </div>
-  </form>
+  <form method="post" accept-charset="utf-8">
 
-<% itemsChild.forEach( function ( itemsChild ){ %>
-  <div class="item">
-    <h1><%= itemsChild.author %></h1>
-  </div>
-<% }); %>
-</div>
+
+	<table style="width:300px">
+	<thead>
+		<td>Name of author:</td>
+		<td>Books</td>
+	</thead>
+	<% itemsChild.forEach( function ( itemsChild ){ %>
+	<tr>
+	
+	  <td><%= itemsChild.author %></td>
+	  <td><%= itemsChild.book %></td>
+	  
+	 <% }); %>
+	  
+	</tr>
+	</table>
+
+  </form>
+ </div>
+ 
+

@@ -17,19 +17,17 @@ MongoClient.connect("mongodb://localhost:27017/authorData", function(err, db) {
 
   var collection = db.collection('User');
   var queryQ = req.body.searchQ;
-	collection.find({ author: queryQ }).toArray(function(err, items) {
+  collection.find({ author: queryQ }).toArray(function(err, items) {
 
 		
 		items.forEach(function(items){
 
 			collection.find({book: items.book}).toArray(function(err, itemsChild){
-
-
-			console.log("Inner Loop:" + itemsChild.author);
-
 			res.render('showAuthor' , {
 			title: 'The authors along with their co-authors you queried for',
-			itemsChild: itemsChild});
+			itemsChild: itemsChild,
+			queried: queryQ
+									  });
 		});
 
 		});
